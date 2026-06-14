@@ -1,0 +1,66 @@
+# =============================================
+# SEGURANÇA — NUNCA subir estas pastas/arquivos
+# =============================================
+
+# Variáveis de ambiente (contém chaves de API!)
+.env
+*.env
+.env.local
+.env.production
+
+# =============================================
+# PYTHON / BACKEND
+# =============================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Banco de dados local
+*.db
+*.sqlite
+*.sqlite3
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# MyPy
+.mypy_cache/
+
+# =============================================
+# NODE / FRONTEND
+# =============================================
+node_modules/
+dist/
+.cache/
+.vite/
+
+# Build output
+Front/dist/
+Front/build/
+
+# =============================================
+# SISTEMA
+# =============================================
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
+.idea/
+.vscode/settings.json
+
+# =============================================
+# DADOS SENSÍVEIS / GRANDES
+# =============================================
+# Descomente se o CSV for muito grande para o Git
+# Back/app/data/cdrview/*.csv

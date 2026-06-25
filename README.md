@@ -1,10 +1,10 @@
-# 🌐 Painel BiT — App B2G
+# Painel BiT — App B2G
 
 > **Ferramenta de decisão para gestores públicos** que consolida dados de mobilidade, emprego e saúde mental por região, cruzados com o dataset Vísent CDRView, respondendo consultas em linguagem natural para orientar políticas de inclusão digital e equidade social.
 
 ---
 
-## 📋 Índice
+## Índice
 
 - [Visão Geral](#visão-geral)
 - [Stack Tecnológico](#stack-tecnológico)
@@ -28,11 +28,11 @@ O **Painel BiT** é uma web app responsiva (PWA) com agente de IA integrado que 
 
 | # | Serviço | Descrição |
 |---|---------|-----------|
-| 1 | 📚 **Formações** | Mapa de programas públicos de formação tech por região cruzado com dados de conectividade |
-| 2 | 💼 **Empregabilidade** | Taxa de emprego por região/setor/demográfico, cruzado com concentração de pessoas sem emprego formal |
-| 3 | 🌱 **Experiências Estruturantes** | Mapa de iniciativas sociais e culturais bem-sucedidas por região |
-| 4 | 🤝 **Mentorias** | Mapa de programas de mentoria pública e conexão com sociedade civil |
-| 5 | 🧠 **Saúde Mental** | Indicadores de saúde mental por região cruzados com cobertura de rede |
+| 1 | **Formações** | Mapa de programas públicos de formação tech por região cruzado com dados de conectividade |
+| 2 | **Empregabilidade** | Taxa de emprego por região/setor/demográfico, cruzado com concentração de pessoas sem emprego formal |
+| 3 | **Experiências Estruturantes** | Mapa de iniciativas sociais e culturais bem-sucedidas por região |
+| 4 | **Mentorias** | Mapa de programas de mentoria pública e conexão com sociedade civil |
+| 5 | **Saúde Mental** | Indicadores de saúde mental por região cruzados com cobertura de rede |
 
 ---
 

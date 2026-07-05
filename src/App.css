@@ -1,0 +1,146 @@
+body {
+  background-color: #F8FAFC;
+  font-size: 14px;
+  font-family: 'Segoe UI';
+}
+
+.header{
+  height: 60px;
+  
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-right: 10px;
+
+  margin-top: 5px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: auto;
+
+  background: #1D4ED8;
+}
+
+
+.name-mark {
+  color: white;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-items: center;
+}
+
+
+.name-mark-color {
+  color: white;
+}
+
+.from {
+    color: #81a2fd;
+    margin-left: 10px;
+}
+
+h2 {
+  color: black;
+}
+
+h3 {
+  color: black;
+}
+
+.center{
+  display: flex;
+  flex-direction: row;
+}
+
+
+.main-content{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.content{
+  display: flex;
+  flex-direction: column;  
+  margin-top: 10px;
+}
+
+.info {
+  color: black;
+
+  display: flex;
+  align-items: flex-start;
+  margin-left: 10px;
+  margin-bottom: 5px;
+
+  font-size: 15px;
+}
+
+select {
+  
+  background-color: #3d6df0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  
+  border-radius: 5px;
+  border: 2px solid #3a66df;
+  
+  height: 30px;
+  width: 200px;
+  
+  margin-left: 10px;
+  margin-bottom: 30px;
+  padding: 5px;
+
+  cursor: pointer;
+}
+
+
+select:hover {
+  background-color: #4775f3;
+}
+
+.menu-item{
+
+  background-color: transparent;
+
+  width: auto;
+
+  display: flex;
+  align-items: center;
+
+  margin: 10px;
+  padding: 10px;
+
+  border: transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  color: #81a2fd;
+}
+
+.menu-item:hover{
+  background-color: #3d6df0;
+  color: white;
+}
+
+.section-button-header{
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+
+.sidebar:hover .label{
+  opacity: 1;
+}
+
+.mapa {
+  border-radius: 10px;
+}

@@ -2,10 +2,10 @@ import os
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
+from app.tools.visent import obter_resumo_visent
 
 load_dotenv()
 
-# Inicializa o modelo Groq (LLaMA 3)
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
     api_key=os.getenv("GROQ_API_KEY"),
@@ -20,11 +20,11 @@ O teu papel é ajudar gestores públicos, analistas de políticas sociais e orga
 governamentais de Angola, Brasil e América Latina a tomar decisões baseadas em 
 evidências para programas de inclusão digital, emprego, formação e saúde mental por região.
 
-Tens acesso ao dataset Vísent CDRView — dados reais de concentração populacional 
-e cobertura de rede (3G/4G/5G) — cruzados com indicadores territoriais de Angola 
-(21 províncias), Brasil e países da América Latina.
+DADOS REAIS DO DATASET VÍSENT CDRVIEW (actualizado em tempo real):
+{dados_visent}
 
 Quando responderes:
+- Usa SEMPRE os dados reais do Vísent acima para fundamentar as tuas respostas
 - Sê claro, directo e baseado nos dados disponíveis
 - Identifica regiões prioritárias para intervenção pública
 - Calcula e explica o IOT (Índice de Oportunidade Territorial) quando relevante
@@ -34,9 +34,53 @@ Quando responderes:
 """
 
 def consultar_agente(pergunta: str) -> str:
-    mensagens = [
+    from app.tools.cache import obter_cache, guardar_cache
+    from app.tools.respostas_pre_processadas import verificar_resposta_pre_processada
+
+    # Camada 1 — resposta pré-processada
+    pre_processada = verificar_resposta_pre_processada(pergunta)
+    if pre_processada:
+        return pre_processada
+
+    # Camada 2 — cache
+    cached = obter_cache(pergunta)
+    if cached:
+        return cached
+
+    # Camada 3 — LLM
+    try:
+        dados_visent = obter_resumo_visent()["resumo_texto"]
+    except Exception:
+        dados_visent = "Dados Vísent temporariamente indisponíveis."
+
+    try:
+        from app.tools.angola_data import obter_resumo_angola
+        dados_angola = obter_resumo_angola()["resumo_texto"]
+    except Exception:
+        dados_angola = "Dados de Angola temporariamente indisponíveis."
+
+    try:
+        from app.tools.fontes_publicas import obter_resumo_fontes_publicas
+        dados_publicos = obter_resumo_fontes_publicas()
+    except Exception:
+        dados_publicos = "Fontes públicas temporariamente indisponíveis."
+
+    prompt = ChatPromptTemplate.from_messages([
         ("system", SYSTEM_PROMPT),
-        ("human", pergunta)
-    ]
-    resposta = llm.invoke(mensagens)
-    return resposta.content
+        ("human", "{pergunta}")
+    ])
+
+    chain = prompt | llm
+    resposta = chain.invoke({
+        "dados_visent": dados_visent,
+        "dados_angola": dados_angola,
+        "dados_publicos": dados_publicos,
+        "pergunta": pergunta
+    })
+
+    resultado = resposta.content
+
+    # Guarda no cache para próximas consultas
+    guardar_cache(pergunta, resultado)
+
+    return resultado

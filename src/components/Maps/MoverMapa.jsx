@@ -6,7 +6,7 @@ function MoverMapa({ coordenadas }) {
 
   useEffect(() => {
     if (coordenadas) {
-      map.setView(coordenadas, 12);
+      map.setView(coordenadas, 7);
     }
   }, [coordenadas]);
 

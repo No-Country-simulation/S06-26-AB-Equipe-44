@@ -14,17 +14,14 @@ function ChatHeader({setPagina}) {
                     </section>  
                       <section className='section-button-header'>
 
-                      <button className="menu-item" onClick={() => setPagina("wellcome")}>
-                          Dashboard
+                      <button className="menu-item" onClick={() => setPagina("configurações")}>
+                          Definições
                       </button>
 
                       <button className="menu-item" onClick={() => setPagina("geo")}>
                           Map
                       </button>
 
-                      <button className="menu-item" onClick={() => setPagina("assistente")}>
-                          Consult Agent AI
-                      </button>
                     </section>
 
                   </header>

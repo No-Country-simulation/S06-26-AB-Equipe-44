@@ -7,7 +7,6 @@ body {
 .header{
   height: 60px;
   
-  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding-right: 10px;
 
   margin-top: 5px;
@@ -19,6 +18,25 @@ body {
   background: #1D4ED8;
 }
 
+button{
+  width: auto;
+
+  margin: 10px;
+  padding: 10px;
+
+  border: transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  color: #81a2fd;
+  background-color: #3d6df0;
+}
+
+button:hover {
+  background-color: #4a76f0;
+  color: #ffffff;
+}
 
 .name-mark {
   color: white;
@@ -66,6 +84,46 @@ h3 {
   margin-top: 10px;
 }
 
+.content-geo {
+  display: flex;
+  flex-direction: row;
+}
+
+
+.content-configuracoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+
+  margin: auto;
+  margin-top: 100px;
+
+  width: 500px;
+  height: 500px;
+
+  background-color: #1a398d;
+  
+  border-radius: 5px;
+  
+}
+
+.botao-trocar-tema {
+
+  width: 100px;
+
+  margin: 10px;
+  padding: 10px;
+
+  border: transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  color: #81a2fd;
+  background-color: #3d6df0;
+}
+
 .info {
   color: black;
 
@@ -73,8 +131,20 @@ h3 {
   align-items: flex-start;
   margin-left: 10px;
   margin-bottom: 5px;
-
+  
   font-size: 15px;
+}
+
+
+
+.info-color-geo {
+  color: black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-left: 100px;
 }
 
 select {
@@ -103,6 +173,12 @@ select {
 select:hover {
   background-color: #4775f3;
 }
+
+.section-input-geo {
+  display: flex;
+  flex-direction: column;
+}
+
 
 .menu-item{
 
@@ -139,8 +215,4 @@ select:hover {
 
 .sidebar:hover .label{
   opacity: 1;
-}
-
-.mapa {
-  border-radius: 10px;
 }

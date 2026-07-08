@@ -1,14 +1,13 @@
 import { useState } from 'react'
+import { GeoJSON } from 'react-leaflet'
 import './App.css'
 import Mapa from './components/Maps/Map.jsx' 
 import Chat from './components/Chat/Chat.jsx'
-import Logo from "./assets/icons_projeto_B2G/icon_orivis.png";
-
+import Logo from "./assets/icons_projeto_B2G/icon_orivis.png"
+import geoJsonAngoloaMunicipios from "./assets/geo/Dados Visent de Angola/Provícias de Angola/Municípios/gadm41_AGO_2_formatado.json"
 
 function App() {
   const [pagina, setPagina] = useState("wellcome");
-
-  const [regiao, setRegiao] = useState("AEROPORTO_HLZ");
 
   const regioes = {
   AEROPORTO_HLZ: {
@@ -101,6 +100,9 @@ function App() {
   VIA_EXPRESSA_CORREDOR: {
     coordenadas: [-27.6200, -48.5800]}
 };
+
+  const [regiao, setRegiao] = useState(regioes["AEROPORTO_HLZ"]);
+
 
   const coordenadas = regioes[regiao] || [-27.6700, -48.5470];
 
@@ -266,10 +268,10 @@ function App() {
       VIA_EXPRESSA_CORREDOR: 62
       
     },
-  }
+  };
 
-  const [indicador, setIndicador] = useState("empregabilidade")
-  const valor = indicadores[indicador][regiao]
+  const [indicador, setIndicador] = useState("empregabilidade");
+  const valor = indicadores[indicador][regiao];
 
   function getColor(valor){
     if (valor >= 80)
@@ -286,8 +288,9 @@ function App() {
 
     else
       return "rgb(253, 0, 0)";
-  }
+  };
 
+  const feature = geoJsonAngoloaMunicipios.features;  
 
   return (
     <>
@@ -362,8 +365,8 @@ function App() {
                         onChange={(e) => setRegiao(e.target.value)}
                       >
                         
-                        <option value="AEROPORTO_HLZ">AEROPORTO_HLZ</option>
-                        <option value="BIGUACU_BR101_NORTE">BIGUACU_BR101_NORTE</option>
+                        <option value={" AEROPORTO_HLZ"}>AEROPORTO_HLZ</option>
+                        <option value={"BIGUACU_BR101_NORTE"}>BIGUACU_BR101_NORTE</option>
                         <option value="CAMPECHE">CAMPECHE</option>
                         <option value="CANASVIEIRAS">CANASVIEIRAS</option>
                         <option value="CBD_BEIRAMAR">CBD_BEIRAMAR</option>
@@ -406,6 +409,7 @@ function App() {
                     </section>
 
                     <Mapa 
+                    feature={feature}
                     coordenadas={coordenadas}
                     nome={regiao}
                     />

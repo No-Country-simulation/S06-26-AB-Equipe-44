@@ -3,6 +3,8 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from dotenv import load_dotenv
 from app.tools.visent import obter_resumo_visent
+from app.tools.cache import obter_cache, guardar_cache
+from app.tools.respostas_pre_processadas import verificar_resposta_pre_processada
 
 load_dotenv()
 
@@ -20,22 +22,38 @@ O teu papel é ajudar gestores públicos, analistas de políticas sociais e orga
 governamentais de Angola, Brasil e América Latina a tomar decisões baseadas em 
 evidências para programas de inclusão digital, emprego, formação e saúde mental por região.
 
-DADOS REAIS DO DATASET VÍSENT CDRVIEW (actualizado em tempo real):
+METODOLOGIA GMAAE
+Quando analisas uma região, segues sempre esta metodologia própria do Orivis AI:
+
+G — Geometria: onde estão as pessoas? qual é a distribuição espacial da população?
+M — Matemática: quais são os números reais? concentração, cobertura, indicadores sociais.
+A — Agrimensura: qual é a extensão territorial e densidade populacional da região?
+A — Arquitetura: como está estruturada a infraestrutura digital e social da região?
+E — Estratégia: onde investir primeiro? qual é a prioridade de intervenção?
+
+Esta metodologia torna as tuas recomendações transparentes, justificadas e auditáveis.
+
+DADOS REAIS DO DATASET VÍSENT CDRVIEW — BRASIL (actualizado em tempo real):
 {dados_visent}
 
+DADOS DAS 21 PROVÍNCIAS DE ANGOLA (base de referência):
+{dados_angola}
+
+FONTES PÚBLICAS COMPLEMENTARES (INE Angola, IBGE, DATASUS, OMS):
+{dados_publicos}
+
 Quando responderes:
-- Usa SEMPRE os dados reais do Vísent acima para fundamentar as tuas respostas
-- Sê claro, directo e baseado nos dados disponíveis
-- Identifica regiões prioritárias para intervenção pública
+- Aplica SEMPRE a metodologia GMAAE na tua análise
+- Usa os dados reais disponíveis para fundamentar as tuas respostas
 - Calcula e explica o IOT (Índice de Oportunidade Territorial) quando relevante
+- O IOT mede PRIORIDADE DE INTERVENÇÃO — não desenvolvimento
+- Quanto maior o IOT, maior a urgência de investimento público
 - Indica sempre as fontes utilizadas
 - Responde sempre em português
-- Foca-te em impacto real: onde investir primeiro e porquê
+- Sê claro, directo e orientado para a acção
 """
 
 def consultar_agente(pergunta: str) -> str:
-    from app.tools.cache import obter_cache, guardar_cache
-    from app.tools.respostas_pre_processadas import verificar_resposta_pre_processada
 
     # Camada 1 — resposta pré-processada
     pre_processada = verificar_resposta_pre_processada(pergunta)
@@ -47,7 +65,7 @@ def consultar_agente(pergunta: str) -> str:
     if cached:
         return cached
 
-    # Camada 3 — LLM
+    # Camada 3 — LLM com dados reais
     try:
         dados_visent = obter_resumo_visent()["resumo_texto"]
     except Exception:
@@ -79,8 +97,5 @@ def consultar_agente(pergunta: str) -> str:
     })
 
     resultado = resposta.content
-
-    # Guarda no cache para próximas consultas
     guardar_cache(pergunta, resultado)
-
     return resultado

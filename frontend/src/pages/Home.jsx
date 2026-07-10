@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { consultarDados } from '../services/api'
-import { Send, MapPin, BarChart2, Heart, GraduationCap, Wifi, FileText, Globe, Map } from 'lucide-react'
+import { Send, MapPin, BarChart2, Heart, GraduationCap, Wifi, FileText, Map, Sparkles, ArrowRight } from 'lucide-react'
 import Logo from '../assets/logo.png'
 
 const sugestoes = [
@@ -11,12 +11,6 @@ const sugestoes = [
   { icone: GraduationCap, texto: 'Onde faltam programas de Formação?', cor: '#059669' },
   { icone: Wifi, texto: 'Onde falta cobertura digital?', cor: '#D97706' },
   { icone: FileText, texto: 'Gerar relatório de prioridades', cor: '#0891B2' },
-]
-
-const estatisticas = [
-  { label: 'Regiões analisadas', valor: '34' },
-  { label: 'Fontes de dados', valor: '4' },
-  { label: 'Última actualização', valor: '08/07/2026' },
 ]
 
 export default function Home({ idioma, setIdioma }) {
@@ -59,43 +53,37 @@ export default function Home({ idioma, setIdioma }) {
             <span style={{ color: '#93C5FD', fontSize: '11px', display: 'block', lineHeight: 1 }}>Centro de Inteligência Territorial</span>
           </div>
         </div>
-
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <button
-            onClick={() => navigate('/analise', { state: { vista: 'mapa' } })}
-            style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '8px', padding: '8px 14px', cursor: 'pointer', color: 'white', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '500' }}
-          >
-            <Map size={14} /> Mapa
-          </button>
-          <button
-            onClick={() => navigate('/analise', { state: { vista: 'indicadores' } })}
-            style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '8px', padding: '8px 14px', cursor: 'pointer', color: 'white', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '500' }}
-          >
-            <BarChart2 size={14} /> Indicadores
-          </button>
-        </div>
       </header>
 
       {/* Hero */}
-      <div style={{ maxWidth: '720px', margin: '0 auto', padding: '80px 2rem 40px', textAlign: 'center' }}>
+      <div style={{ maxWidth: '760px', margin: '0 auto', padding: '72px 2rem 56px', textAlign: 'center' }}>
 
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '20px', padding: '4px 14px', marginBottom: '24px' }}>
-          <Globe size={12} color="#1D4ED8" />
-          <span style={{ fontSize: '12px', color: '#1D4ED8', fontWeight: '500' }}>App BiT B2G — Hackathon 2026</span>
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: '6px',
+          background: 'linear-gradient(120deg, #EFF6FF, #F5F3FF)', border: '1px solid #BFDBFE',
+          borderRadius: '20px', padding: '4px 14px', marginBottom: '24px'
+        }}>
+          <Sparkles size={12} color="#1D4ED8" />
+          <span style={{ fontSize: '12px', color: '#1D4ED8', fontWeight: '600' }}>App BiT B2G — Hackathon 2026</span>
         </div>
 
-        <h1 style={{ fontSize: '36px', fontWeight: '700', color: '#1F2937', margin: '0 0 12px', lineHeight: 1.2 }}>
+        <h1 style={{ fontSize: '38px', fontWeight: '800', color: '#1F2937', margin: '0 0 12px', lineHeight: 1.2, letterSpacing: '-0.02em' }}>
           Inteligência Territorial<br />
-          <span style={{ color: '#1D4ED8' }}>para Decisões Públicas</span>
+          <span style={{ background: 'linear-gradient(90deg, #1D4ED8, #7C3AED)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>
+            para Decisões Públicas
+          </span>
         </h1>
 
-        <p style={{ color: '#6B7280', fontSize: '16px', margin: '0 0 48px', lineHeight: 1.6 }}>
-          Olá! Sou o Orivis AI.<br />
-          Faça uma pergunta sobre dados territoriais de Angola, Brasil e América Latina.
+        <p style={{ color: '#6B7280', fontSize: '16px', margin: '0 0 40px', lineHeight: 1.6 }}>
+          Olá! Sou o Orivis AI. Faça uma pergunta sobre dados territoriais<br />
+          de Angola, Brasil e América Latina.
         </p>
 
         {/* Caixa de pergunta */}
-        <div style={{ background: 'white', borderRadius: '16px', boxShadow: '0 4px 24px rgba(0,0,0,0.08)', border: '1px solid #E5E7EB', padding: '16px', marginBottom: '24px' }}>
+        <div style={{
+          background: 'white', borderRadius: '18px', boxShadow: '0 8px 32px rgba(29,78,216,0.08)',
+          border: '1px solid #E5E7EB', padding: '18px', marginBottom: '16px'
+        }}>
           <textarea
             value={pergunta}
             onChange={e => setPergunta(e.target.value)}
@@ -110,7 +98,7 @@ export default function Home({ idioma, setIdioma }) {
               onClick={() => enviar()}
               disabled={loading || !pergunta.trim()}
               style={{
-                background: loading || !pergunta.trim() ? '#E5E7EB' : '#1D4ED8',
+                background: loading || !pergunta.trim() ? '#E5E7EB' : 'linear-gradient(120deg, #1D4ED8, #2563EB)',
                 color: loading || !pergunta.trim() ? '#9CA3AF' : 'white',
                 border: 'none', borderRadius: '10px', padding: '10px 20px',
                 cursor: loading || !pergunta.trim() ? 'not-allowed' : 'pointer',
@@ -123,8 +111,50 @@ export default function Home({ idioma, setIdioma }) {
           </div>
         </div>
 
+        {/* Acesso directo — sem precisar de perguntar nada */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '32px' }}>
+          <button
+            onClick={() => navigate('/analise', { state: { vista: 'mapa' } })}
+            style={{
+              background: 'linear-gradient(120deg, #0A1233, #142868)', border: 'none', borderRadius: '14px',
+              padding: '18px', cursor: 'pointer', textAlign: 'left', color: 'white',
+              display: 'flex', flexDirection: 'column', gap: '8px', transition: 'transform 0.15s'
+            }}
+            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+          >
+            <Map size={20} color="#93C5FD" />
+            <div>
+              <p style={{ margin: 0, fontWeight: '700', fontSize: '14px' }}>Explorar Mapa</p>
+              <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#93C5FD' }}>Ver regiões sem perguntar nada</p>
+            </div>
+            <ArrowRight size={14} color="#93C5FD" style={{ marginTop: '4px' }} />
+          </button>
+
+          <button
+            onClick={() => navigate('/analise', { state: { vista: 'indicadores' } })}
+            style={{
+              background: 'white', border: '1px solid #E5E7EB', borderRadius: '14px',
+              padding: '18px', cursor: 'pointer', textAlign: 'left',
+              display: 'flex', flexDirection: 'column', gap: '8px', transition: 'transform 0.15s, border-color 0.15s'
+            }}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.borderColor = '#1D4ED8' }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = '#E5E7EB' }}
+          >
+            <BarChart2 size={20} color="#1D4ED8" />
+            <div>
+              <p style={{ margin: 0, fontWeight: '700', fontSize: '14px', color: '#1F2937' }}>Ver Indicadores</p>
+              <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#6B7280' }}>Painel completo por região</p>
+            </div>
+            <ArrowRight size={14} color="#1D4ED8" style={{ marginTop: '4px' }} />
+          </button>
+        </div>
+
         {/* Sugestões */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '48px' }}>
+        <p style={{ fontSize: '12px', color: '#9CA3AF', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '12px', textAlign: 'left' }}>
+          Ou pergunta algo como
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '10px', marginBottom: '40px' }}>
           {sugestoes.map(({ icone: Icone, texto, cor }, i) => (
             <button
               key={i}
@@ -146,25 +176,9 @@ export default function Home({ idioma, setIdioma }) {
           ))}
         </div>
 
-        {/* Estatísticas */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '40px', flexWrap: 'wrap' }}>
-          {estatisticas.map(({ label, valor }) => (
-            <div key={label} style={{ textAlign: 'center' }}>
-              <p style={{ margin: 0, fontSize: '20px', fontWeight: '700', color: '#1F2937' }}>{valor}</p>
-              <p style={{ margin: '2px 0 0', fontSize: '12px', color: '#9CA3AF' }}>{label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Fontes */}
-        <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
-          {['Vísent CDRView', 'INE Angola', 'IBGE Brasil', 'OMS'].map(f => (
-            <span key={f} style={{ fontSize: '11px', color: '#9CA3AF', display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
-              {f}
-            </span>
-          ))}
-        </div>
+        <p style={{ fontSize: '11px', color: '#D1D5DB' }}>
+          Dados públicos verificados · cruzando múltiplas fontes oficiais
+        </p>
       </div>
     </div>
   )

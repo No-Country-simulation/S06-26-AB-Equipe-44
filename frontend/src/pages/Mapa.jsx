@@ -63,11 +63,13 @@ export default function Mapa({ idioma }) {
     if (regiao) {
       layer.on('click', () => setRegiaoActiva(regiao))
       layer.bindTooltip(`
-        <div style="font-family:Inter,sans-serif;min-width:140px">
-          <strong style="font-size:14px">${nome}</strong>
-          <p style="margin:2px 0;font-size:12px;color:#6B7280">Angola</p>
-          <p style="margin:4px 0 0;font-size:13px">IOT: <strong style="color:${corPorIOT(regiao.iot)}">${regiao.iot}/100</strong></p>
-          <p style="margin:2px 0;font-size:12px">${regiao.iot_classificacao}</p>
+        <div style="font-family:Inter,sans-serif;min-width:150px">
+          <strong style="font-size:14px">${regiao.regiao}</strong>
+          <p style="margin:2px 0;font-size:12px;color:#6B7280">${regiao.pais}</p>
+          <p style="margin:6px 0 0;font-size:13px">IOT: <strong style="color:${corPorIOT(regiao.iot)}">${regiao.iot}/100</strong></p>
+          <span style="display:inline-block;margin-top:4px;background:${corPorIOT(regiao.iot)};color:white;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:600">
+            ${regiao.iot_classificacao}
+          </span>
         </div>
       `, { permanent: false })
     }
@@ -133,10 +135,13 @@ export default function Mapa({ idioma }) {
                   eventHandlers={{ click: () => setRegiaoActiva(regiao) }}
                 >
                   <Tooltip>
-                    <div style={{ fontFamily: 'Inter, sans-serif', minWidth: '140px' }}>
+                    <div style={{ fontFamily: 'Inter, sans-serif', minWidth: '150px' }}>
                       <strong style={{ fontSize: '14px' }}>{regiao.regiao}</strong>
                       <p style={{ margin: '2px 0', fontSize: '12px', color: '#6B7280' }}>{regiao.pais}</p>
-                      <p style={{ margin: '4px 0 0', fontSize: '13px' }}>IOT: <strong style={{ color: corPorIOT(regiao.iot) }}>{regiao.iot}/100</strong></p>
+                      <p style={{ margin: '6px 0 0', fontSize: '13px' }}>IOT: <strong style={{ color: corPorIOT(regiao.iot) }}>{regiao.iot}/100</strong></p>
+                      <span style={{ display: 'inline-block', marginTop: '4px', background: corPorIOT(regiao.iot), color: 'white', padding: '2px 10px', borderRadius: '12px', fontSize: '11px', fontWeight: '600' }}>
+                        {regiao.iot_classificacao}
+                      </span>
                     </div>
                   </Tooltip>
                 </CircleMarker>

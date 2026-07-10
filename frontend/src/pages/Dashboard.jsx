@@ -27,7 +27,7 @@ const corCard = (valor) => {
   return '#EF4444'
 }
 
-export default function Dashboard() {
+export default function Dashboard({ idioma }) {
   const [regioes, setRegioes] = useState([])
   const [regiaoSelecionada, setRegiaoSelecionada] = useState(null)
   const [loading, setLoading] = useState(true)

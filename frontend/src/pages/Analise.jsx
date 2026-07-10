@@ -12,7 +12,7 @@ export default function Analise({ idioma, setIdioma }) {
   const [historico, setHistorico] = useState([])
   const [consulta, setConsulta] = useState('')
   const [loading, setLoading] = useState(false)
-  const [vista, setVista] = useState('chat')
+  const [vista, setVista] = useState(location.state?.vista || 'chat')
 
   useEffect(() => {
     if (location.state?.pergunta) {
@@ -42,7 +42,11 @@ export default function Analise({ idioma, setIdioma }) {
     <div style={{ minHeight: '100vh', background: '#F8FAFC', fontFamily: 'Inter, sans-serif', display: 'flex', flexDirection: 'column' }}>
 
       {/* Header */}
-      <header style={{ background: '#1D4ED8', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', boxShadow: '0 2px 8px rgba(0,0,0,0.15)', flexShrink: 0 }}>
+      <header style={{
+        background: 'linear-gradient(120deg, #0A1233 0%, #142868 100%)',
+        padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        height: '64px', boxShadow: '0 2px 12px rgba(10,18,51,0.25)', flexShrink: 0
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <button onClick={() => navigate('/')} style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '8px', padding: '6px 10px', cursor: 'pointer', color: 'white', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px' }}>
             <ArrowLeft size={14} /> Início
@@ -62,7 +66,7 @@ export default function Analise({ idioma, setIdioma }) {
           ].map(({ id, label, icone: Icone }) => (
             <button key={id} onClick={() => setVista(id)} style={{
               background: vista === id ? 'white' : 'transparent',
-              color: vista === id ? '#1D4ED8' : 'white',
+              color: vista === id ? '#142868' : 'white',
               border: 'none', borderRadius: '6px', padding: '6px 14px',
               cursor: 'pointer', fontSize: '13px', fontWeight: '500',
               display: 'flex', alignItems: 'center', gap: '6px'
@@ -72,17 +76,8 @@ export default function Analise({ idioma, setIdioma }) {
           ))}
         </div>
 
-        <div style={{ display: 'flex', gap: '6px' }}>
-          {['PT', 'EN', 'ES'].map(lang => (
-            <button key={lang} onClick={() => setIdioma(lang)} style={{
-              background: idioma === lang ? 'white' : 'transparent',
-              color: idioma === lang ? '#1D4ED8' : 'white',
-              border: '1px solid rgba(255,255,255,0.3)',
-              borderRadius: '4px', padding: '3px 10px',
-              cursor: 'pointer', fontSize: '12px', fontWeight: '600'
-            }}>{lang}</button>
-          ))}
-        </div>
+        {/* Espaço reservado para manter o layout equilibrado */}
+        <div style={{ width: '32px' }} />
       </header>
 
       {/* Conteúdo */}
@@ -93,6 +88,11 @@ export default function Analise({ idioma, setIdioma }) {
 
             {/* Histórico */}
             <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '20px', marginBottom: '16px' }}>
+              {historico.length === 0 && (
+                <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', color: '#9CA3AF', fontSize: '14px' }}>
+                  Faz uma pergunta para começar a análise.
+                </div>
+              )}
               {historico.map((msg, i) => (
                 <div key={i} style={{ display: 'flex', gap: '12px', flexDirection: msg.tipo === 'user' ? 'row-reverse' : 'row' }}>
                   <div style={{ width: '36px', height: '36px', borderRadius: '50%', flexShrink: 0, background: msg.tipo === 'user' ? '#1D4ED8' : '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

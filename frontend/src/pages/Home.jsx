@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { consultarDados } from '../services/api'
-import { Send, MapPin, BarChart2, Heart, GraduationCap, Wifi, FileText, Globe } from 'lucide-react'
+import { Send, MapPin, BarChart2, Heart, GraduationCap, Wifi, FileText, Globe, Map } from 'lucide-react'
 import Logo from '../assets/logo.png'
 
 const sugestoes = [
@@ -47,7 +47,11 @@ export default function Home({ idioma, setIdioma }) {
     <div style={{ minHeight: '100vh', background: '#F8FAFC', fontFamily: 'Inter, sans-serif' }}>
 
       {/* Header */}
-      <header style={{ background: '#1D4ED8', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
+      <header style={{
+        background: 'linear-gradient(120deg, #0A1233 0%, #142868 100%)',
+        padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        height: '64px', boxShadow: '0 2px 12px rgba(10,18,51,0.25)'
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <img src={Logo} alt="Orivis AI" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
           <div>
@@ -55,16 +59,20 @@ export default function Home({ idioma, setIdioma }) {
             <span style={{ color: '#93C5FD', fontSize: '11px', display: 'block', lineHeight: 1 }}>Centro de Inteligência Territorial</span>
           </div>
         </div>
-        <div style={{ display: 'flex', gap: '6px' }}>
-          {['PT', 'EN', 'ES'].map(lang => (
-            <button key={lang} onClick={() => setIdioma(lang)} style={{
-              background: idioma === lang ? 'white' : 'transparent',
-              color: idioma === lang ? '#1D4ED8' : 'white',
-              border: '1px solid rgba(255,255,255,0.3)',
-              borderRadius: '4px', padding: '3px 10px',
-              cursor: 'pointer', fontSize: '12px', fontWeight: '600'
-            }}>{lang}</button>
-          ))}
+
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <button
+            onClick={() => navigate('/analise', { state: { vista: 'mapa' } })}
+            style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '8px', padding: '8px 14px', cursor: 'pointer', color: 'white', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '500' }}
+          >
+            <Map size={14} /> Mapa
+          </button>
+          <button
+            onClick={() => navigate('/analise', { state: { vista: 'indicadores' } })}
+            style={{ background: 'rgba(255,255,255,0.1)', border: 'none', borderRadius: '8px', padding: '8px 14px', cursor: 'pointer', color: 'white', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px', fontWeight: '500' }}
+          >
+            <BarChart2 size={14} /> Indicadores
+          </button>
         </div>
       </header>
 

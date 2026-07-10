@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { obterMapa } from '../services/api'
 import { Briefcase, GraduationCap, Brain, Users, Sprout, Wifi, UserRound } from 'lucide-react'
+import ExportarPDF from '../components/ExportarPDF'
 
 const icones = {
   empregabilidade: Briefcase,
@@ -60,13 +61,14 @@ export default function Dashboard() {
   return (
     <div style={{ fontFamily: 'Inter, sans-serif', maxWidth: '1200px', margin: '0 auto' }}>
 
-      {/* Título */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
-        <div>
-          <h1 style={{ color: '#1F2937', fontSize: '24px', fontWeight: '700', margin: 0 }}>Painel de Dados Públicos</h1>
-          <p style={{ color: '#6B7280', fontSize: '14px', margin: '4px 0 0' }}>App BiT B2G — Orivis AI</p>
-        </div>
-      </div>
+    {/* Título */}
+<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '12px' }}>
+  <div>
+    <h1 style={{ color: '#1F2937', fontSize: '24px', fontWeight: '700', margin: 0 }}>Painel de Dados Públicos</h1>
+    <p style={{ color: '#6B7280', fontSize: '14px', margin: '4px 0 0' }}>App BiT B2G — Orivis AI</p>
+  </div>
+  <ExportarPDF regiao={regiaoSelecionada} idioma={idioma} />
+</div>
 
       {/* Selector de região — dois níveis */}
       <div style={{ marginBottom: '24px', display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>

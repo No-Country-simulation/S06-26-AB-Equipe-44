@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import Logo from '../assets/logo.png'
 
 export default function Header({ idioma, setIdioma }) {
   const location = useLocation()
@@ -12,7 +13,7 @@ export default function Header({ idioma, setIdioma }) {
   return (
     <header style={{ background: '#1D4ED8', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ background: '#10B981', borderRadius: '8px', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white', fontSize: '14px' }}>O</div>
+        <img src={Logo} alt="Orivis AI" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
         <span style={{ color: 'white', fontWeight: '700', fontSize: '18px', fontFamily: 'Inter, sans-serif' }}>Orivis AI</span>
         <span style={{ color: '#93C5FD', fontSize: '12px', marginLeft: '4px' }}>App BiT B2G</span>
       </div>

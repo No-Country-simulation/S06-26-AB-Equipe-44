@@ -1,0 +1,176 @@
+.header{
+  height: 60px;
+  
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-right: 10px;
+
+  margin-top: 5px;
+
+  display: flex;
+  flex-direction: row;
+
+  background: #1D4ED8;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.section-name-mark {
+  color: white;
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-items: center;
+}
+
+
+.name-mark {
+  color: white;
+}
+
+.from {
+    color: #81a2fd;
+    margin-left: 10px;
+}
+
+
+.message-list {
+    flex: 1;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+}
+
+.message {
+    background-color: #3d6df0;
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    
+
+}
+
+.user {
+    margin-left: auto;
+    background-color: #27469c;
+}
+
+.assistent {
+    margin-right: auto;
+    background-color: #2a4ba7;
+}
+
+.button-new-message{
+    background-color: #3d6df0;
+    
+    min-width: 70px;
+    max-width: 140px;
+
+    min-height: 30px;
+    max-height: 45px;
+
+    border-radius: 40px;
+    border: 1px transparent;
+    margin: 5px;
+}
+
+
+
+
+
+.menu-item{
+
+  background-color: transparent;
+
+  width: auto;
+
+  display: flex;
+  align-items: center;
+
+  margin: 10px;
+  padding: 10px;
+
+  border: transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  color: #81a2fd;
+}
+
+.menu-item:hover{
+  background-color: #3d6df0;
+  color: white;
+}
+
+.section-button-header{
+  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  
+}
+
+.section-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px;
+
+    border-top: 1px solid rgba(255,255,255,.1);
+
+    background: #1D4ED8;
+}
+
+.input {
+    background-color: #3d6df0;
+    border-radius: 15px;
+    border: transparent;
+
+    width: 500px;
+    min-width: 100px;
+    max-width: 700px;
+
+    height: 30px;
+}
+
+
+.button-send {
+    background-color: #3d6df0;
+
+    min-width: 70px;
+    max-width: 140px;
+
+    min-height: 30px;
+    max-height: 45px;
+
+    border-radius: 40px;
+    border: 1px transparent;
+    margin: 5px;
+
+    cursor: pointer;
+}
+
+.button-clean-message {
+    background-color: #3d6df0;
+    
+    min-width: 70px;
+    max-width: 140px;
+
+    min-height: 30px;
+    max-height: 45px;
+
+    border-radius: 40px;
+    border: 1px transparent;
+    margin: 5px;
+
+    cursor: pointer;
+}

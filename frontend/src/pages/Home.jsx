@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { consultarDados } from '../services/api'
 import { Send, MapPin, BarChart2, Heart, GraduationCap, Wifi, FileText, Globe } from 'lucide-react'
+import Logo from '../assets/logo.png'
 
 const sugestoes = [
   { icone: MapPin, texto: 'Onde investir primeiro em Angola?', cor: '#1D4ED8' },
@@ -48,7 +49,7 @@ export default function Home({ idioma, setIdioma }) {
       {/* Header */}
       <header style={{ background: '#1D4ED8', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '64px', boxShadow: '0 2px 8px rgba(0,0,0,0.15)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ background: '#10B981', borderRadius: '8px', width: '32px', height: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white', fontSize: '14px' }}>O</div>
+          <img src={Logo} alt="Orivis AI" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
           <div>
             <span style={{ color: 'white', fontWeight: '700', fontSize: '16px' }}>Orivis AI</span>
             <span style={{ color: '#93C5FD', fontSize: '11px', display: 'block', lineHeight: 1 }}>Centro de Inteligência Territorial</span>

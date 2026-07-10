@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { MapContainer, TileLayer, GeoJSON, CircleMarker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import { obterMapa } from '../services/api'
+import geoJsonAngola from '../assets/geo/Dados Visent de Angola/Provícias de Angola/Municípios/gadm41_AGO_2_formatado.json'
 
 const calcularIOT = (indicadores) => {
   const valores = Object.values(indicadores)
@@ -24,8 +25,7 @@ const corPorIOT = (iot) => {
   return '#EF4444'
 }
 
-// URL do GeoJSON no nosso repositório GitHub
-const GEOJSON_URL = 'https://raw.githubusercontent.com/No-Country-simulation/S06-26-AB-Equipe-44/main/data/angola.geojson'
+
 
 export default function Mapa({ idioma }) {
   const [regioes, setRegioes] = useState([])
@@ -35,15 +35,12 @@ export default function Mapa({ idioma }) {
   const [paisFiltro, setPaisFiltro] = useState('Todos')
 
   useEffect(() => {
-    Promise.all([
-      obterMapa(),
-      fetch(GEOJSON_URL).then(r => r.json()).catch(() => null)
-    ]).then(([mapaData, geoData]) => {
-      setRegioes(mapaData.regioes)
-      setGeoJson(geoData)
-      setLoading(false)
-    })
-  }, [])
+  obterMapa().then(data => {
+    setRegioes(data.regioes)
+    setGeoJson(geoJsonAngola)
+    setLoading(false)
+  })
+}, [])
 
   const paises = ['Todos', ...new Set(regioes.map(r => r.pais))]
   const regioesFiltradas = paisFiltro === 'Todos' ? regioes : regioes.filter(r => r.pais === paisFiltro)

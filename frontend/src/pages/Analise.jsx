@@ -4,6 +4,7 @@ import { consultarDados, obterMapa } from '../services/api'
 import { Send, Bot, User, ArrowLeft, Map, BarChart2 } from 'lucide-react'
 import Dashboard from './Dashboard'
 import Mapa from './Mapa'
+import Logo from '../assets/logo.png'
 
 export default function Analise({ idioma, setIdioma }) {
   const location = useLocation()
@@ -47,7 +48,7 @@ export default function Analise({ idioma, setIdioma }) {
             <ArrowLeft size={14} /> Início
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{ background: '#10B981', borderRadius: '6px', width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', color: 'white', fontSize: '12px' }}>O</div>
+            <img src={Logo} alt="Orivis AI" style={{ width: '32px', height: '32px', borderRadius: '8px' }} />
             <span style={{ color: 'white', fontWeight: '700', fontSize: '16px' }}>Orivis AI</span>
           </div>
         </div>
